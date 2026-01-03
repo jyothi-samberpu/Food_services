@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100..900&display=swap');
+
+/* GLOBAL RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Work Sans", sans-serif;
+}
+
+body {
+  background-color: #0f172a;
+  color: white;
+}
+
+/* ================= NAVBAR ================= */
+.navsection {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 24px;
+  background-color: #020617;
+  color: white;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.userAuth span {
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+/* ================= LAYOUT ================= */
+.collectionSection {
+  display: flex;
+  min-height: calc(100vh - 70px);
+}
+
+/* ================= SIDEBAR ================= */
+.sideBarSection {
+  width: 240px;
+  background-color: rgb(100, 69, 11);
+  color: white;
+  padding-top: 15px;
+}
+
+.sideBarSection ul {
+  list-style: none;
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.sideBarSection ul li {
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sideBarSection ul li:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ================= AUTH COMMON ================= */
+.loginSection,
+.registersection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card */
+.loginSection form,
+.registersection form {
+  width: 360px;
+  background-color: #020617;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Heading */
+.loginSection h3,
+.registersection h3 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #2563eb;
+}
+
+/* Field container */
+.loginSection form div,
+.registersection form div {
+  margin-bottom: 16px;
+}
+
+/* Labels */
+.loginSection label,
+.registersection label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e5e7eb;
+}
+
+/* Inputs */
+.loginSection input,
+.registersection input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Button */
+.loginSection button,
+.registersection button {
+  width: 100%;
+  padding: 11px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.loginSection button:hover,
+.registersection button:hover {
+  background-color: #1d4ed8;
+}
+/* ================= ADD FIRM ================= */
+
+.firmSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form Card */
+.addFirmForm {
+  width: 420px;
+  background-color: #020617;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Heading */
+.addFirmForm h3 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #2563eb;
+}
+
+/* Field wrapper */
+.addFirmForm div {
+  margin-bottom: 16px;
+}
+
+/* Labels */
+.addFirmForm label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e5e7eb;
+}
+
+/* Inputs */
+.addFirmForm input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* File input */
+.addFirmForm input[type="file"] {
+  padding: 6px;
+  background-color: #020617;
+  color: #cbd5f5;
+}
+
+/* Button */
+.addFirmForm button {
+  width: 100%;
+  padding: 11px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+
+//* Wrapper for the whole field */
+.checkinp {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 400px;
+  padding: 8px;
+  border: 1px solid #eff0f1;
+  border-radius: 6px;
+  background-color: #020617; /* match your AddFirm form */
+  color: #e5e7eb;
+  font-size: 14px;
+  cursor: default;
+}
+
+/* Label for the field */
+.checkinp > label {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+/* Container for checkboxes */
+.checkboxContainer {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Each checkbox + label pair */
+.checkboxField {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hover effect */
+.checkboxField:hover {
+  border-color: #2563eb;
+  background-color: rgba(37, 99, 235, 0.1);
+}
+
+/* Hide default checkbox */
+.checkboxField input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #2563eb; /* modern colored checkbox */
+  cursor: pointer;
+}
+
+
+.addFirmForm button:hover {
+  background-color: #f9f9fa;
+}
+
+
+
+/* ================= ADD PRODUCT ================= */
+
+.productSection {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addProductForm {
+  width: 420px;
+  background-color: #020617;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.addProductForm h3 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+  color: #2563eb;
+}
+
+.addProductForm div {
+  margin-bottom: 16px;
+}
+
+.addProductForm label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e5e7eb;
+}
+
+.addProductForm input,
+.addProductForm textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.addProductForm textarea {
+  resize: none;
+  height: 80px;
+}
+
+.addProductForm input[type="file"] {
+  padding: 6px;
+  color: #cbd5f5;
+}
+
+.checkboxField {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkboxField input {
+  width: auto;
+}
+
+.addProductForm button {
+  width: 100%;
+  padding: 11px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.addProductForm button:hover {
+  background-color: #1d4ed8;
+}
