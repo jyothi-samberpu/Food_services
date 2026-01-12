@@ -1,5 +1,34 @@
+# Dependencies
 node_modules/
-.env
 Backend/node_modules/
+dashboard/node_modules/
+
+# Environment files
+.env
 Backend/.env
-uploads/
+.env.local
+.env.production
+
+# Uploads (keep folder structure)
+uploads/*
+!uploads/.gitkeep
+Backend/uploads/*
+!Backend/uploads/.gitkeep
+
+# Build outputs
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

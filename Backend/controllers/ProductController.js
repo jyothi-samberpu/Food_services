@@ -1,5 +1,5 @@
 const Product = require('../models/Product');
-const Vendor = require('../models/Vendor');
+const Firm = require('../models/Firm');
 const path = require('path');
 const multer = require('multer');
 
@@ -33,12 +33,15 @@ const addProduct = async (req, res) => {
     // Use vendorId from JWT middleware
     const vendorId = req.vendorId;
 
+    // Find vendor's firm
+    const firm = await Firm.findOne({ vendor: vendorId });
+
     const newProduct = new Product({
-      name,
+      productName: name,
       price,
       description,
-      category,
-      vendor: vendorId,
+      category: category ? JSON.parse(category) : [],
+      firm: firm ? firm._id : null,
       image: req.file ? req.file.filename : null
     });
 
@@ -62,8 +65,7 @@ const addProduct = async (req, res) => {
 const getAllProducts = async (req, res) => {
   try {
     const products = await Product.find()
-      .populate('vendor', 'name email') // optional: select fields
-      .populate('category');
+      .populate('firm');
 
     res.status(200).json({ products });
   } catch (error) {
@@ -80,8 +82,7 @@ const getAllProducts = async (req, res) => {
 const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id)
-      .populate('vendor', 'name email')
-      .populate('category');
+      .populate('firm');
 
     if (!product) return res.status(404).json({ error: 'Product not found' });
 
@@ -99,13 +100,10 @@ const getProductById = async (req, res) => {
  */
 const deleteProduct = async (req, res) => {
   try {
-    const product = await Product.findOneAndDelete({
-      _id: req.params.id,
-      vendor: req.vendorId // only allow vendor to delete own product
-    });
+    const product = await Product.findByIdAndDelete(req.params.id);
 
     if (!product)
-      return res.status(404).json({ error: 'Product not found or unauthorized' });
+      return res.status(404).json({ error: 'Product not found' });
 
     res.status(200).json({ message: 'Product deleted successfully' });
   } catch (error) {

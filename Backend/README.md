@@ -1,36 +1,42 @@
-# venket_services
+# Food Services - Backend
 
-Venket Services is a modern service platform dedicated to connecting vendors, businesses, and customers seamlessly. Our goal is to simplify the way services and products are offered, managed, and accessed, providing a reliable and efficient digital solution for small businesses and enterprises alike.
-
-# Venket Services – Backend
-
-This repository contains the **backend service** for **Venket Services**, built using **Node.js, Express.js, and MongoDB**. It provides APIs for vendor authentication, firm management, product management, and image uploads.
+A modern food service platform backend built with Node.js, Express.js, and MongoDB. This API provides vendor authentication, firm management, product management, and image uploads.
 
 ---
 
-🛠 Tech Stack
+## 🛠 Tech Stack
 
-- **Node.js**
-- **Express.js**
-- **MongoDB (Mongoose)**
+- **Node.js** (v18+ recommended)
+- **Express.js** (v5.x)
+- **MongoDB** (Mongoose v9.x)
 - **JWT Authentication**
-- **Multer (File Uploads)**
-- **dotenv**
-- **Nodemon (Development)**
+- **Multer** (File Uploads)
+- **bcryptjs** (Password Hashing)
+- **CORS** enabled
+- **dotenv** (Environment Variables)
 
 ---
 
-// Project Structure
+## 📁 Project Structure
 
 ```
-venket_services/
-│
+Backend/
 ├── controllers/        # Business logic
+│   ├── vendorController.js
+│   ├── firmController.js
+│   └── ProductController.js
 ├── models/             # Mongoose schemas
-├── routes/             # API routes
-├── middlewares/        # JWT & other middlewares
+│   ├── Vendor.js
+│   ├── Firm.js
+│   └── Product.js
+├── router/             # API routes
+│   ├── vendorRouter.js
+│   ├── firmRouter.js
+│   └── productRouter.js
+├── middlewares/        # JWT verification
+│   └── verifyToken.js
 ├── uploads/            # Uploaded images
-├── .env                # Environment variables
+├── .env                # Environment variables (create this)
 ├── index.js            # Entry point
 ├── package.json
 └── README.md
@@ -38,13 +44,93 @@ venket_services/
 
 ---
 
-## Prerequisites
+## 🚀 Getting Started
 
-Make sure you have the following installed:
+### Prerequisites
 
 - **Node.js** (v18+ recommended)
 - **npm** (comes with Node.js)
 - **MongoDB** (local or MongoDB Atlas)
+
+### Installation
+
+1. Clone the repository
+2. Navigate to Backend folder:
+   ```bash
+   cd Backend
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Create a `.env` file with the following variables:
+   ```env
+   PORT=4000
+   MONGO_URL=mongodb://localhost:27017/food_services
+   WHATISYOURWORK=your_secret_jwt_key_here
+   ```
+   
+   For MongoDB Atlas, use:
+   ```env
+   MONGO_URL=mongodb+srv://<username>:<password>@cluster.xxxxx.mongodb.net/food_services
+   ```
+
+5. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+The server will run at `http://localhost:4000`
+
+---
+
+## 📡 API Endpoints
+
+### Vendor Routes (`/vendor`)
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| POST | `/register` | Register new vendor | No |
+| POST | `/login` | Login vendor | No |
+| GET | `/all-vendors` | Get all vendors | No |
+| GET | `/single-vendor/:id` | Get vendor by ID | No |
+
+### Firm Routes (`/firm`)
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| POST | `/add-firm` | Add new firm | Yes |
+| GET | `/all` | Get all firms | No |
+| GET | `/:id` | Get firm by ID | No |
+| DELETE | `/:id` | Delete firm | Yes |
+
+### Product Routes (`/product`)
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| POST | `/add` | Add new product | Yes |
+| GET | `/all` | Get all products | No |
+| GET | `/:id` | Get product by ID | No |
+| DELETE | `/:id` | Delete product | Yes |
+
+---
+
+## 🔐 Authentication
+
+Protected routes require a JWT token in the Authorization header:
+```
+Authorization: Bearer <your_token>
+```
+
+---
+
+## 📦 Scripts
+
+- `npm run dev` - Start development server with nodemon
+- `npm start` - Start production server
+
+---
+
+## License
+
+ISC
 
 ---
 

@@ -20,7 +20,7 @@ const firmSchema = new mongoose.Schema({
         ]
 
     },
-    regin:{
+    region:{
         type:[
             {
                 type:String,

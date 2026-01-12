@@ -351,3 +351,108 @@ body {
 .addProductForm button:hover {
   background-color: #1d4ed8;
 }
+
+/* ================= ALL PRODUCTS ================= */
+.allProductsSection {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.allProductsSection h3 {
+  font-size: 24px;
+  color: #2563eb;
+  margin-bottom: 20px;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.productCard {
+  background-color: #020617;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+}
+
+.productImage {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.productInfo {
+  padding: 15px;
+}
+
+.productInfo h4 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.productInfo .price {
+  font-size: 16px;
+  color: #22c55e;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.productInfo .description {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.productInfo .category {
+  font-size: 12px;
+  color: #2563eb;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.deleteBtn {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background-color: #dc2626;
+}
+
+/* ================= WELCOME SECTION ================= */
+.welcomeSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.welcomeSection h2 {
+  font-size: 32px;
+  color: #2563eb;
+  margin-bottom: 16px;
+}
+
+.welcomeSection p {
+  font-size: 16px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}

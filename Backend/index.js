@@ -1,14 +1,13 @@
 const express = require("express");
-const dotenv = require("dotenv");
+require("dotenv").config();
 const mongoose = require("mongoose");
+const cors = require("cors");
 const vendorRouter = require("./router/vendorRouter");
 const bodyParser = require("body-parser");
 const firmRouter= require("./router/firmRouter");
 const path = require("path");
 // Routers
 const productRouter = require("./router/productRouter");
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -19,7 +18,11 @@ mongoose
   .then(() => console.log("MongoDb connected successfully"))
   .catch((error) => console.log("MongoDb connection error:", error));
 
-
+// CORS - Allow frontend to connect
+app.use(cors({
+  origin: ["http://localhost:5173", "http://localhost:3000"],
+  credentials: true
+}));
 
 // Middleware
 app.use(express.json()); // parse JSON
