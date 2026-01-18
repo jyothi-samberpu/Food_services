@@ -86,25 +86,36 @@ const addFirm = [upload.single('image'), addFirmHandler];
 /* ---------- Get All Firms ---------- */
 const getAllFirms = async (req, res) => {
   try {
-    const firms = await Firm.find().populate('vendor', 'username email').lean();
+    console.log('Fetching all firms...');
+    const firms = await Firm.find()
+      .populate('vendor', 'username email')
+      .populate('products');
+    
+    console.log('Firms fetched successfully:', firms.length);
     res.status(200).json({ firms });
   } catch (error) {
-    console.error('Get All Firms Error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error('Get All Firms Error:', error.message || error);
+    res.status(500).json({ error: 'Internal server error', details: error.message });
   }
 };
 
 /* ---------- Get Firm by ID ---------- */
 const getFirmById = async (req, res) => {
   try {
-    const firm = await Firm.findById(req.params.id).populate('vendor', 'username email').lean();
+    console.log('Fetching firm by ID:', req.params.id);
+    const firm = await Firm.findById(req.params.id)
+      .populate('vendor', 'username email')
+      .populate('products');
+    
     if (!firm) {
       return res.status(404).json({ error: 'Firm not found' });
     }
+    
+    console.log('Firm fetched successfully');
     res.status(200).json({ firm });
   } catch (error) {
-    console.error('Get Firm Error:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    console.error('Get Firm Error:', error.message || error);
+    res.status(500).json({ error: 'Internal server error', details: error.message });
   }
 };
 

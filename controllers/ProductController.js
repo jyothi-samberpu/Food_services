@@ -67,9 +67,15 @@ const addProduct = async (req, res) => {
 const getAllProducts = async (req, res) => {
   try {
     const products = await Product.find()
-      .populate('firm')
-      .lean()
-      .select('-__v');
+      .select('-__v')
+      .populate({
+        path: 'firm',
+        populate: {
+          path: 'vendor',
+          select: 'username email'
+        }
+      })
+      .lean();
 
     res.status(200).json({ products });
   } catch (error) {
@@ -86,7 +92,13 @@ const getAllProducts = async (req, res) => {
 const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id)
-      .populate('firm')
+      .populate({
+        path: 'firm',
+        populate: {
+          path: 'vendor',
+          select: 'username email'
+        }
+      })
       .lean();
 
     if (!product) return res.status(404).json({ error: 'Product not found' });
