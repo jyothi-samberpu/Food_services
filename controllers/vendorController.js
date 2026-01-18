@@ -72,7 +72,12 @@ const vendorLogin = async (req, res) => {
 
 const getAllVendors = async (req, res) => {
     try {
-        const vendors = await Vendor.find().populate('firm').lean();
+        const vendors = await Vendor.find().populate({
+            path: 'firm',
+            populate: {
+                path: 'products'
+            }
+        }).lean();
         res.status(200).json({ vendors });
     } catch (error) {
         console.error('Get All Vendors Error:', error);
@@ -88,7 +93,12 @@ const getVendorById = async (req, res) => {
     }
     
     try {
-        const vendor = await Vendor.findById(id).populate('firm').lean();
+        const vendor = await Vendor.findById(id).populate({
+            path: 'firm',
+            populate: {
+                path: 'products'
+            }
+        }).lean();
         if (!vendor) {
             return res.status(404).json({ error: 'Vendor not found' });
         }

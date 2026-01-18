@@ -12,15 +12,24 @@ const productRouter = require("./router/productRouter");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+// Check if MONGO_URL is set
+if (!process.env.MONGO_URL) {
+  console.error("ERROR: MONGO_URL environment variable is not set!");
+  process.exit(1);
+}
+
 // MongoDB connection (no options needed in Mongoose 7+)
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => console.log("MongoDb connected successfully"))
-  .catch((error) => console.log("MongoDb connection error:", error));
+  .catch((error) => {
+    console.error("MongoDb connection error:", error);
+    process.exit(1);
+  });
 
 // CORS - Allow frontend to connect
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:3000"],
+  origin: ["http://localhost:5173", "http://localhost:3000", "https://venket-services.onrender.com"],
   credentials: true
 }));
 
