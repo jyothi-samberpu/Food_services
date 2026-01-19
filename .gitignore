@@ -45,7 +45,6 @@ yarn-error.log*
 *.rej
 
 # Documentation
-*.md
 COMPLETE_DEPLOYMENT_GUIDE.md
 DEPLOYMENT.md
 DEPLOYMENT_CHECKLIST.md
