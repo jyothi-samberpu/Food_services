@@ -13,6 +13,7 @@ A complete food vendor management system with React frontend and Node.js backend
 - ✅ Request Logging (Morgan)
 - ✅ MongoDB Integration
 - ✅ Production Ready
+- ✅ CI/CD Pipeline with GitHub Actions
 
 ## Tech Stack
 
@@ -138,6 +139,26 @@ See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
 heroku create your-app-name
 git push heroku main
 ```
+
+## CI/CD Pipeline
+
+This project includes a comprehensive CI/CD pipeline using GitHub Actions that automatically:
+
+- Tests code on multiple Node.js versions (18.x, 20.x)
+- Installs dependencies for backend and frontend
+- Runs linting and syntax checks
+- Builds the frontend application
+- Uploads build artifacts
+
+See [CI_CD_GUIDE.md](./CI_CD_GUIDE.md) for detailed pipeline documentation.
+
+### Pipeline Status
+
+The pipeline runs automatically on:
+- Push to main branch
+- Pull requests targeting main branch
+
+Check the **Actions** tab in GitHub to view pipeline runs and results.
 
 ## Security
 

@@ -25,8 +25,6 @@ requiredEnvVars.forEach(varName => {
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-const morganFormat = NODE_ENV === 'production' ? 'combined' : 'dev';
-app.use(morgan(morganFormatcess.env.NODE_ENV || 'development';
 
 // Logging setup (file + console)
 const logDir = path.join(__dirname, "logs");

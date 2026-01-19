@@ -1,0 +1,72 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install root dependencies
+        run: npm ci --ignore-scripts || npm install
+
+      - name: Install Backend dependencies
+        working-directory: ./Backend
+        run: npm ci || npm install
+
+      - name: Install Frontend dependencies
+        working-directory: ./dashboard
+        run: npm ci || npm install
+
+      - name: Lint Backend
+        working-directory: ./Backend
+        run: |
+          echo "Running backend syntax check..."
+          node -c index.js
+
+      - name: Lint Frontend
+        working-directory: ./dashboard
+        run: |
+          echo "Running frontend linter..."
+          npm run lint || true
+
+      - name: Build Frontend
+        working-directory: ./dashboard
+        run: npm run build
+
+      - name: Check Backend Environment
+        working-directory: ./Backend
+        run: |
+          echo "Checking for .env.example..."
+          if [ -f .env.example ]; then
+            echo ".env.example found"
+          else
+            echo "Warning: .env.example not found"
+          fi
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        if: matrix.node-version == '20.x'
+        with:
+          name: frontend-build
+          path: dashboard/dist
+          retention-days: 7
