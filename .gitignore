@@ -38,3 +38,15 @@ yarn-error.log*
 
 # Misc
 .cache/
+*.tmp
+*.swp
+*.swo
+*.orig
+*.rej
+
+# Documentation
+*.md
+
+# Coverage / test output
+coverage/
+.nyc_output/
