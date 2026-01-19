@@ -25,8 +25,8 @@ requiredEnvVars.forEach(varName => {
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+const NODE_ENV = process.env.NODE_ENV || 'development';
 const morganFormat = NODE_ENV === 'production' ? 'combined' : 'dev';
-app.use(morgan(morganFormatcess.env.NODE_ENV || 'development';
 
 // Logging setup (file + console)
 const logDir = path.join(__dirname, "logs");
@@ -36,7 +36,7 @@ if (!fs.existsSync(logDir)) {
 const accessLogStream = fs.createWriteStream(path.join(logDir, "access.log"), { flags: "a" });
 
 // console-friendly dev log + persistent combined log
-app.use(morgan("dev"));
+app.use(morgan(morganFormat));
 app.use(morgan("combined", { stream: accessLogStream }));
 
 // MongoDB connection
