@@ -1,0 +1,22 @@
+{
+  "name": "food_services_root",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.x || 18.x || 20.x"
+  },
+  "scripts": {
+    "dev": "concurrently \"cd Backend && npm run dev\" \"cd dashboard && npm run dev\"",
+    "start": "cd Backend && npm start",
+    "start:backend": "cd Backend && npm start",
+    "start:frontend": "cd dashboard && npm run build && npm run preview",
+    "build": "cd dashboard && npm run build",
+    "build:frontend": "cd dashboard && npm run build",
+    "install:all": "cd Backend && npm install && cd ../dashboard && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
+

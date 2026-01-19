@@ -1,353 +1,648 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* GLOBAL RESET */
+/* GLOBAL RESET & THEME */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Work Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --danger: #dc2626;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --dark-bg: #0f172a;
+  --card-bg: #1e293b;
+  --border: rgba(255, 255, 255, 0.1);
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
 }
 
 body {
-  background-color: #0f172a;
-  color: white;
+  background-color: var(--dark-bg);
+  color: var(--text-primary);
+  overflow: hidden;
 }
 
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 .navsection {
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 0 24px;
-  background-color: #020617;
-  color: white;
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 30px;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 100;
 }
+
+.company {
+  font-size: 24px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.userAuth {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
 .userAuth span {
-  margin-left: 8px;
+  font-size: 14px;
   cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  color: var(--text-primary);
 }
 
-/* ================= LAYOUT ================= */
+.userAuth span:hover {
+  background-color: rgba(37, 99, 235, 0.2);
+  color: var(--primary);
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background-color: rgba(37, 99, 235, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(37, 99, 235, 0.3);
+}
+
+.userInfo .logoutBtn {
+  padding: 6px 12px;
+  background-color: var(--danger);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s;
+}
+
+.userInfo .logoutBtn:hover {
+  background-color: var(--danger-dark);
+}
+
+/* LAYOUT */
 .collectionSection {
   display: flex;
-  min-height: calc(100vh - 70px);
+  height: calc(100vh - 70px);
 }
 
-/* ================= SIDEBAR ================= */
+/* SIDEBAR */
 .sideBarSection {
-  width: 240px;
-  background-color: rgb(100, 69, 11);
-  color: white;
-  padding-top: 15px;
+  width: 260px;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border-right: 1px solid var(--border);
+  padding-top: 20px;
+  overflow-y: auto;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
 }
 
 .sideBarSection ul {
   list-style: none;
-  padding: 16px;
-  font-size: 15px;
-  font-weight: 500;
+  padding: 0;
 }
 
 .sideBarSection ul li {
-  margin-bottom: 12px;
-  padding: 10px;
-  border-radius: 6px;
+  margin: 0;
+  padding: 16px 20px;
+  border-left: 4px solid transparent;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .sideBarSection ul li:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(37, 99, 235, 0.15);
+  color: var(--primary);
+  border-left-color: var(--primary);
+  padding-left: 24px;
 }
 
-/* ================= AUTH COMMON ================= */
+.sideBarSection ul li.active {
+  background-color: rgba(37, 99, 235, 0.2);
+  color: var(--primary);
+  border-left-color: var(--primary);
+  font-weight: 600;
+}
+
+/* MAIN CONTENT */
+.mainContent {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* WELCOME */
+.welcomeScreen {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.welcomeContent {
+  text-align: center;
+  max-width: 500px;
+}
+
+.welcomeContent h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--primary);
+}
+
+.welcomeContent p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+}
+
+.primaryBtn, .secondaryBtn {
+  display: block;
+  width: 100%;
+  padding: 14px 28px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primaryBtn {
+  background-color: var(--primary);
+  color: white;
+}
+
+.primaryBtn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.secondaryBtn {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.secondaryBtn:hover {
+  background-color: rgba(37, 99, 235, 0.1);
+}
+
+/* FORMS */
 .loginSection,
-.registersection {
+.registersection,
+.firmSection,
+.productSection,
+.allProducts,
+.userDetails {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 40px 20px;
+  overflow-y: auto;
 }
 
-/* Card */
-.loginSection form,
-.registersection form {
-  width: 360px;
-  background-color: #020617;
-  padding: 30px;
+form {
+  width: 100%;
+  max-width: 450px;
+  background-color: var(--card-bg);
+  padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border);
 }
 
-/* Heading */
-.loginSection h3,
-.registersection h3 {
+form h3 {
   text-align: center;
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--primary);
+}
+
+form > div {
+  margin-bottom: 20px;
+}
+
+form label {
+  font-size: 14px;
   font-weight: 600;
-  margin-bottom: 25px;
-  color: #2563eb;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 8px;
 }
 
-/* Field container */
-.loginSection form div,
-.registersection form div {
-  margin-bottom: 16px;
-}
-
-/* Labels */
-.loginSection label,
-.registersection label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #e5e7eb;
-}
-
-/* Inputs */
-.loginSection input,
-.registersection input {
+form input,
+form textarea,
+form select {
   width: 100%;
-  padding: 10px;
-  margin-top: 6px;
+  padding: 12px;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  border: none;
-  outline: none;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
   font-size: 14px;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
 }
 
-/* Button */
-.loginSection button,
-.registersection button {
+form input:focus,
+form textarea:focus,
+form select:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+form input::placeholder {
+  color: var(--text-secondary);
+}
+
+form button {
   width: 100%;
-  padding: 11px;
-  background-color: #2563eb;
+  padding: 12px 24px;
+  background-color: var(--primary);
   color: white;
   border: none;
   border-radius: 6px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  margin-top: 10px;
 }
 
-.loginSection button:hover,
-.registersection button:hover {
-  background-color: #1d4ed8;
-}
-/* ================= ADD FIRM ================= */
-
-.firmSection {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+form button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
 }
 
-/* Form Card */
-.addFirmForm {
-  width: 420px;
-  background-color: #020617;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-/* Heading */
-.addFirmForm h3 {
-  text-align: center;
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 25px;
-  color: #2563eb;
-}
-
-/* Field wrapper */
-.addFirmForm div {
-  margin-bottom: 16px;
-}
-
-/* Labels */
-.addFirmForm label {
+/* MESSAGES */
+.error-message, .success-message {
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
   font-size: 14px;
   font-weight: 500;
-  color: #e5e7eb;
 }
 
-/* Inputs */
-.addFirmForm input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  border-radius: 6px;
-  border: none;
-  outline: none;
-  font-size: 14px;
+.error-message {
+  background-color: rgba(220, 38, 38, 0.15);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  color: #fca5a5;
 }
 
-/* File input */
-.addFirmForm input[type="file"] {
-  padding: 6px;
-  background-color: #020617;
-  color: #cbd5f5;
+.success-message {
+  background-color: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #86efac;
 }
 
-/* Button */
-.addFirmForm button {
-  width: 100%;
-  padding: 11px;
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-
-//* Wrapper for the whole field */
+/* CHECKBOXES */
 .checkinp {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  max-width: 400px;
-  padding: 8px;
-  border: 1px solid #eff0f1;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  background-color: #020617; /* match your AddFirm form */
-  color: #e5e7eb;
-  font-size: 14px;
-  cursor: default;
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
-/* Label for the field */
-.checkinp > label {
-  font-weight: 500;
-  margin-bottom: 4px;
+.checkinp label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
 }
 
-/* Container for checkboxes */
 .checkboxContainer {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
 }
 
-/* Each checkbox + label pair */
-.checkboxField {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 8px;
-  border: 1px solid #444;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  user-select: none;
-}
-
-/* Hover effect */
-.checkboxField:hover {
-  border-color: #2563eb;
-  background-color: rgba(37, 99, 235, 0.1);
-}
-
-/* Hide default checkbox */
-.checkboxField input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  accent-color: #2563eb; /* modern colored checkbox */
-  cursor: pointer;
-}
-
-
-.addFirmForm button:hover {
-  background-color: #f9f9fa;
-}
-
-
-
-/* ================= ADD PRODUCT ================= */
-
-.productSection {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.addProductForm {
-  width: 420px;
-  background-color: #020617;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
-
-.addProductForm h3 {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 24px;
-  color: #2563eb;
-}
-
-.addProductForm div {
-  margin-bottom: 16px;
-}
-
-.addProductForm label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #e5e7eb;
-}
-
-.addProductForm input,
-.addProductForm textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  border-radius: 6px;
-  border: none;
-  outline: none;
-  font-size: 14px;
-}
-
-.addProductForm textarea {
-  resize: none;
-  height: 80px;
-}
-
-.addProductForm input[type="file"] {
-  padding: 6px;
-  color: #cbd5f5;
-}
-
 .checkboxField {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.checkboxField input {
-  width: auto;
-}
-
-.addProductForm button {
-  width: 100%;
-  padding: 11px;
-  background-color: #2563eb;
-  color: white;
-  border: none;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  font-size: 15px;
-  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.checkboxField:hover {
+  border-color: var(--primary);
+  background-color: rgba(37, 99, 235, 0.15);
+}
+
+.checkboxField input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
   cursor: pointer;
 }
 
-.addProductForm button:hover {
-  background-color: #1d4ed8;
+/* PRODUCTS */
+.allProducts {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.allProducts h3 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--primary);
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.productCard {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.productCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.2);
+}
+
+.productCard img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.productCard > div {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.productCard h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.productCard .price {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--success);
+  margin-bottom: 12px;
+}
+
+.productCard .category {
+  font-size: 12px;
+  color: var(--warning);
+  margin-bottom: 8px;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.productCard .description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  flex: 1;
+  line-height: 1.5;
+}
+
+.productCard .deleteBtn {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--danger);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: auto;
+}
+
+.productCard .deleteBtn:hover {
+  background-color: var(--danger-dark);
+  transform: translateY(-2px);
+}
+
+/* USER DETAILS */
+.userDetails {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.userDetails h3 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--primary);
+}
+
+.detailsCard {
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  margin-bottom: 30px;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.detailRow:last-child {
+  border-bottom: none;
+}
+
+.detailRow strong {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.detailRow span {
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.firmsSection {
+  margin-top: 30px;
+}
+
+.firmsSection h4 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.firmsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.firmItem {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  display: flex;
+  gap: 15px;
+  transition: all 0.3s ease;
+}
+
+.firmItem:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2);
+}
+
+.firmItem img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.firmInfo {
+  flex: 1;
+}
+
+.firmInfo h5 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.firmInfo p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+.firmInfo .offer {
+  color: var(--success);
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.logoutSection {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.logoutBtn {
+  padding: 12px 40px;
+  background-color: var(--danger);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.logoutBtn:hover {
+  background-color: var(--danger-dark);
+  transform: translateY(-2px);
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(37, 99, 235, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(37, 99, 235, 0.5);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .sideBarSection {
+    width: 0;
+    display: none;
+  }
+
+  form {
+    max-width: 100%;
+    padding: 30px 20px;
+  }
+
+  .productsGrid,
+  .firmsList {
+    grid-template-columns: 1fr;
+  }
 }

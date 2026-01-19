@@ -1,3 +1,3 @@
-const API_PATH = "http://localhost:5000/api/v1/";
+const API_PATH = "http://localhost:4000";
 
-//
+export default API_PATH;

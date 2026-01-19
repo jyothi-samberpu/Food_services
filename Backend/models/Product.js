@@ -1,7 +1,7 @@
 const mongoose =require('mongoose');
 
 const productSchema=new mongoose.Schema({
-    productNmae:{
+    productName:{
         type:String,
         required:true
     },
@@ -13,7 +13,7 @@ const productSchema=new mongoose.Schema({
         type:[
             {
                 type:String,
-                enum:['ve','non-veg']
+                enum:['veg','non-veg']
             }
         ]
     },
